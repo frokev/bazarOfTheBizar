@@ -5,6 +5,7 @@ namespace BazarBizar
 {
     class Customer
     {
+
         public string CustomerID { get; private set; }
         public String CustomerName { get; set; }
         public HashSet<string> ShoppingCart { get; private set; }
@@ -12,6 +13,7 @@ namespace BazarBizar
         public Customer(string customerID)
         {
             ShoppingCart = new HashSet<string>();
+
         }
 
         public void AddToCart(string productKey)

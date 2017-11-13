@@ -19,7 +19,10 @@ namespace BazarBizar
 
             for (int i = 0; i < limit; i++)
             {
-                bazar.Booths[i] = new Customer()
+                string uid = Guid.NewGuid().ToString();
+                bazar.Customers[i] = new Customer(uid);
+
+                bazar.Booths[i] = new Booth();
             }
         }
     }
