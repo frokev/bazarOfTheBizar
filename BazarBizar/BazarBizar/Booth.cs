@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace BazarBizar
 {
-    class Booth
+    public class Booth
     {
-        private Dictionary<string, Product> Stock = new Dictionary<string, Product>();
+        public Dictionary<string, Product> Stock { get; set; }
 
-        public Booth() { }
+        public Booth() {
+            Stock = new Dictionary<string, Product>();
+        }
 
         public void AddToStock(Product product)
         {
             Stock.Add(product.Key, product);
         }
 
-        public void removeFromStock(string key)
-        {
-            Stock.Remove(key);
-        }
+        public void RemoveFromStock(string key) => Stock.Remove(key);
     }
 }

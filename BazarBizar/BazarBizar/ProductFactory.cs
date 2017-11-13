@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BazarBizar
 {
-    public class ProductFactory
+    public static class ProductFactory
     {
         public enum Category
         {
@@ -11,28 +11,19 @@ namespace BazarBizar
 
         }
 
-        public ProductFactory()
-
-        {
-
-        }
-
-        public Product GetProduct(Category category, string name, int price)
+        public static Product GetProduct(Booth booth, Category category, string name, int price)
         {
             switch (category)
             {
                 case Category.Consumable:
-                    return new Consumable(name, price);
-                    break;
+                    return new Consumable(booth, name, price);
                 case Category.Electronic:
-                    return new Electronic(name, price);
-                    break;
+                    return new Electronic(booth, name, price);
                 case Category.Clothing:
-                    return new Clothing(name, price);
-                    break;
-
+                    return new Clothing(booth, name, price);
+                default:
+                    return null;
             }
-            return null;
         }
 
     }

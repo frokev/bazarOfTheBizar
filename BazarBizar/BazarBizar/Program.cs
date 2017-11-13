@@ -10,12 +10,17 @@ namespace BazarBizar
     {
         const int limit = 50;
 
-        Booth[] booths = new Booth[limit];
-        Customer[] customers = new Customer[limit];
+        Booth[] Booths = new Booth[limit];
+        Customer[] Customers = new Customer[limit];
 
         static void Main(string[] args)
         {
-            
+            Program bazar = new Program();
+
+            for (int i = 0; i < limit; i++)
+            {
+                bazar.Booths[i] = new Customer()
+            }
         }
     }
 }

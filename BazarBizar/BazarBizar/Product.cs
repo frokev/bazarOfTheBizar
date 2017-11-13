@@ -7,6 +7,8 @@ namespace BazarBizar
     {
         string Name { get; set; }
         int Price { get; set; }
-        string Key { get; set; }
+        string Key { get; }
+
+        Booth Booth { get; }
     }
 }

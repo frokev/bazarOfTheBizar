@@ -1,44 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BazarBizar
 {
     class Customer
     {
-        private int customerID;
-        private String customerName;
-        private String[] shoppingCart;
-        //private Booth booth;
+        public string CustomerID { get; private set; }
+        public String CustomerName { get; set; }
+        public HashSet<string> ShoppingCart { get; private set; }
 
-        public Customer(int customerID, String customerName /*, Booth booth*/)
+        public Customer(string customerID)
         {
-            //Create Customer
-            this.customerName = customerName;
-            shoppingCart = new String[10];
-            //this.booth = booth;
+            ShoppingCart = new HashSet<string>();
         }
 
-        public int GetCustomerID()
+        public void AddToCart(string productKey)
         {
-            return customerID;
+            ShoppingCart.Add(productKey);
         }
 
-        public String GetCustomerName()
+        public void RemoveFromCart(string productKey)
         {
-            return customerName;
-        }
-
-        public String[] getShoppingCartItems()
-        {
-            return shoppingCart;
-        }
-
-        public void addToCart(string productKey, int listingKey)
-        {
-            //Må fylles inn
+            ShoppingCart.Remove(productKey);
         }
 
         public void checkout()
