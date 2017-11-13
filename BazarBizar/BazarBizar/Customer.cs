@@ -11,14 +11,14 @@ namespace BazarBizar
         private int customerID;
         private String customerName;
         private String[] shoppingCart;
-        //private Booth booth;
+        private Booth booth;
 
-        public Customer(int customerID, String customerName /*, Booth booth*/)
+        public Customer(int customerID, String customerName , Booth booth)
         {
             //Create Customer
             this.customerName = customerName;
             shoppingCart = new String[10];
-            //this.booth = booth;
+            this.booth = booth;
         }
 
         public int GetCustomerID()
