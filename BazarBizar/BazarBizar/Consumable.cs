@@ -2,18 +2,20 @@
 
 namespace BazarBizar
 {
-    public class Consumable : Product
+    public class Consumable : IProduct
     {
         public string Name { get; set; }
         public int Price { get; set; }
-        public string Key { get; private set; }
+        public string Key { get; }
 
-        public Booth Booth { get; private set; }
+        public Booth Booth { get; }
 
         public Consumable(Booth booth, string name, int price)
         {
             this.Booth = booth;
             Key = GenerateKey();
+            Name = name;
+            Price = price;
         }
 
         private string GenerateKey()

@@ -47,7 +47,7 @@
     <Compile Include="Consumable.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Electronic.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="IProduct.cs" />
     <Compile Include="ProductFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

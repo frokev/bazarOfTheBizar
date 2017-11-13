@@ -2,13 +2,13 @@
 
 namespace BazarBizar
 {
-    public class Electronic : Product
+    public class Electronic : IProduct
     {
         public string Name { get; set; }
         public int Price { get; set; }
-        public string Key { get; private set; }
+        public string Key { get; }
 
-        public Booth Booth { get; set; }
+        public Booth Booth { get; }
 
         public Electronic(Booth booth, string name, int price)
         {
@@ -18,8 +18,8 @@ namespace BazarBizar
 
         private string GenerateKey()
         {
-            Guid g = Guid.NewGuid();
-            string key = Convert.ToBase64String(g.ToByteArray());
+            var g = Guid.NewGuid();
+            var key = Convert.ToBase64String(g.ToByteArray());
             key = key.Replace("=", "");
             key = key.Replace("+", "");
 

@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace BazarBizar
 {
-    class Program
+    internal class Program
     {
-        const int limit = 50;
+        private const int Limit = 50;
 
-        Booth[] Booths = new Booth[limit];
-        Customer[] Customers = new Customer[limit];
+        private readonly Booth[] _booths = new Booth[Limit];
+        private readonly Customer[] _customers = new Customer[Limit];
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Program bazar = new Program();
+            var bazar = new Program();
 
-            for (int i = 0; i < limit; i++)
+            for (var i = 0; i < Limit; i++)
             {
-                string uid = Guid.NewGuid().ToString();
-                bazar.Customers[i] = new Customer(uid);
+                var uid = Guid.NewGuid().ToString();
+                bazar._customers[i] = new Customer(uid);
 
-                bazar.Booths[i] = new Booth();
+                bazar._booths[i] = new Booth();
             }
         }
     }

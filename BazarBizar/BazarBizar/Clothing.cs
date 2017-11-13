@@ -2,13 +2,13 @@
 
 namespace BazarBizar
 {
-    public class Clothing : Product
+    public class Clothing : IProduct
     {
         public string Name { get; set; }
         public int Price { get; set; }
-        public string Key { get; private set; }
+        public string Key { get; }
 
-        public Booth Booth { get; private set; }
+        public Booth Booth { get; }
 
         public Clothing(Booth booth, string name, int price)
         {

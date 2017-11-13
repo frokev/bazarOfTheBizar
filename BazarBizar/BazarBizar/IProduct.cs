@@ -1,9 +1,8 @@
 ﻿using System;
+
 namespace BazarBizar
 {
-    
-
-    public interface Product
+    public interface IProduct
     {
         string Name { get; set; }
         int Price { get; set; }

@@ -9,13 +9,13 @@ namespace BazarBizar
 {
     public class Booth
     {
-        public Dictionary<string, Product> Stock { get; set; }
+        public Dictionary<string, IProduct> Stock { get; }
 
         public Booth() {
-            Stock = new Dictionary<string, Product>();
+            Stock = new Dictionary<string, IProduct>();
         }
 
-        public void AddToStock(Product product)
+        public void AddToStock(IProduct product)
         {
             Stock.Add(product.Key, product);
         }

@@ -11,7 +11,7 @@ namespace BazarBizar
 
         }
 
-        public static Product GetProduct(Booth booth, Category category, string name, int price)
+        public static IProduct GetProduct(Booth booth, Category category, string name, int price)
         {
             switch (category)
             {
