@@ -7,6 +7,7 @@ namespace BazarBizar
         public string Name { get; set; }
         public int Price { get; set; }
         public string Key { get; }
+        public string Category { get; }
 
         public Booth Booth { get; }
 
@@ -14,6 +15,9 @@ namespace BazarBizar
         {
             Booth = booth;
             Key = GenerateKey();
+            Name = name;
+            Price = price;
+            Category = "Electronic";
         }
 
         private string GenerateKey()

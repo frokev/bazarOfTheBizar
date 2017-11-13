@@ -5,9 +5,7 @@ namespace BazarBizar
 {
     public class Customer
     {
-
         public string CustomerId { get; }
-        public string CustomerName { get; set; }
 
         private readonly HashSet<string> _shoppingCart;
 
@@ -17,11 +15,39 @@ namespace BazarBizar
             CustomerId = customerId;
         }
 
-        public void AddToCart(string productKey) => _shoppingCart.Add(productKey);
+        public void AddToCart(Booth booth, string productKey)
+        {
+            if (booth.InCustomerCart.Contains(productKey))
+            {
 
-        public void RemoveFromCart(string productKey) => _shoppingCart.Remove(productKey);
+                Console.WriteLine(
+                        "\t\t\tCustomer " + CustomerId + 
+                        " tried to add " + "(" + productKey + ") to cart, but the item does not exist anymore"
+                    );
 
-        public void checkout()
+                return;
+            }
+
+            _shoppingCart.Add(productKey);
+            booth.InCustomerCart.Add(productKey);
+
+            IProduct product;
+            booth.Stock.TryGetValue(productKey, out product);
+
+            if (product != null)
+                Console.WriteLine(
+                        "\t\t\tCustomer " + CustomerId + " added " + product.Category + 
+                        " product " + "(" + productKey + ")" + " to cart"
+                    );
+        }
+
+        public void RemoveFromCart(Booth booth, string productKey)
+        {
+            _shoppingCart.Remove(productKey);
+            booth.InCustomerCart.Remove(productKey);
+        }
+
+        public void Checkout()
         {
             //booth.checkout();
         }

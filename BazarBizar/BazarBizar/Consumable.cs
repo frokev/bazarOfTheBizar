@@ -7,21 +7,23 @@ namespace BazarBizar
         public string Name { get; set; }
         public int Price { get; set; }
         public string Key { get; }
+        public string Category { get; }
 
         public Booth Booth { get; }
 
         public Consumable(Booth booth, string name, int price)
         {
-            this.Booth = booth;
+            Booth = booth;
             Key = GenerateKey();
             Name = name;
             Price = price;
+            Category = "Consumable";
         }
 
         private string GenerateKey()
         {
-            Guid g = Guid.NewGuid();
-            string key = Convert.ToBase64String(g.ToByteArray());
+            var g = Guid.NewGuid();
+            var key = Convert.ToBase64String(g.ToByteArray());
             key = key.Replace("=", "");
             key = key.Replace("+", "");
 

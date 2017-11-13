@@ -1,5 +1,4 @@
-﻿using System;
-namespace BazarBizar
+﻿namespace BazarBizar
 {
     public static class ProductFactory
     {
