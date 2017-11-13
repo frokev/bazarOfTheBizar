@@ -2,7 +2,7 @@
 
 namespace BazarBizar
 {
-    public class Clothing
+    public class Clothing : Product
     {
         public string Name { get; set; }
         public int Price { get; set; }
