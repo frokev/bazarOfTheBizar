@@ -1,4 +1,5 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,5 +26,43 @@ namespace BazarBizar
             }
 
         }
+=======
+namespace BazarBizar
+{
+    public class ProductFactory
+    {
+        public enum Category
+        {
+            Consumable,
+            Electronic,
+            Clothing
+
+        }
+
+        public ProductFactory()
+
+        {
+
+        }
+
+        public Product GetProduct(Category category)
+        {
+            switch (category)
+            {
+                case Category.Consumable:
+                    return new Consumable();
+                    break;
+                case Category.Electronic:
+                    return new Electronic();
+                    break;
+                case Category.Clothing:
+                    return new Clothing();
+                    break;
+
+            }
+            return null;
+        }
+
+>>>>>>> da79ba60f61066d897e9e95568874a825f7844e9
     }
 }

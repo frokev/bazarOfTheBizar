@@ -15,6 +15,7 @@ namespace BazarBizar
 
         static void Main(string[] args)
         {
+            
         }
     }
 }
