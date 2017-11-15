@@ -20,7 +20,7 @@ namespace BazarBizar
             if (booth.InCustomerCart.Contains(productKey))
             {
 
-                Console.WriteLine(
+                View.WriteLine(
                         "\t\t\tCustomer " + CustomerId + 
                         " tried to add " + "(" + productKey + ") to cart, but the item does not exist anymore"
                     );
@@ -35,7 +35,7 @@ namespace BazarBizar
             booth.Stock.TryGetValue(productKey, out product);
 
             if (product != null)
-                Console.WriteLine(
+                View.WriteLine(
                         "\t\t\tCustomer " + CustomerId + " added " + product.Category + 
                         " product " + "(" + productKey + ")" + " to cart"
                     );
@@ -45,11 +45,6 @@ namespace BazarBizar
         {
             _shoppingCart.Remove(productKey);
             booth.InCustomerCart.Remove(productKey);
-        }
-
-        public void Checkout()
-        {
-            //booth.checkout();
         }
     }
 }
