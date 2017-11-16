@@ -58,10 +58,33 @@ namespace BazarBizarTest
         {
             Booth booth1 = new Booth("Booth1");
 
-            booth1.AddToStock(ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "IphoneXxX", 12000));
-            booth1.AddToStock(ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "Doro", 200));
+            IProduct product1 = ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "IphoneXxX", 12000);
+            IProduct product2 = ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "Doro", 200);
+
+            booth1.AddToStock(product1);
+            booth1.AddToStock(product2);
 
             Assert.That(booth1.Stock.Count == 2);
+
+        }
+
+        [Test]
+
+        public void TestRemove()
+        {
+            Booth booth1 = new Booth("Booth1");
+
+            IProduct product1 = ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "IphoneXxX", 12000);
+            IProduct product2 = ProductFactory.GetProduct(booth1, ProductFactory.Category.Electronic, "Doro", 200);
+
+            booth1.AddToStock(product1);
+            booth1.AddToStock(product2);
+
+            Assert.That(booth1.Stock.Count == 2);
+
+            booth1.RemoveFromStock(product1.Key);
+
+            Assert.That(booth1.Stock.Count != 2);
 
         }
 
@@ -74,6 +97,15 @@ namespace BazarBizarTest
 
             Assert.AreNotEqual(Guid1, Guid2);
 
+        }
+
+        [Test]
+
+        public void TestGetName()
+        {
+            Booth booth1 = new Booth("Booth1");
+            Assert.NotNull(booth1.Name);
+            
         }
     }
 }
