@@ -7,9 +7,9 @@ namespace BazarBizar
     public class BazarController
     {
         private readonly Booth[] _booths;
-        public View View { get; }
+        private View View { get; }
 
-        private const int Amount = 3;
+        private const int Amount = 10;
 
         public BazarController()
         {
@@ -18,15 +18,18 @@ namespace BazarBizar
 
             makeBooths();
 
-            foreach (var booth in _booths)
-                makeProducts(booth);
+            foreach (var booth in _booths) { }
+                
 
-            //var customer1AddToCart = new Thread(Customer1PurchaseThread);
-            //var customer2AddToCart = new Thread(Customer2PurchaseThread);
+            for (var i = 0; i < 10; i++)
+            {
+                if (_booths.Length < i) return;
 
-            //customer1AddToCart.Start();
-            //customer2AddToCart.Start();
-            runThreads();
+                var b = _booths[i];
+                makeProducts(b);
+                runThreads(i);
+            }
+                
         }
 
         private Customer[] GetCustomers()
@@ -37,76 +40,30 @@ namespace BazarBizar
             return customers;
         }
 
-        private void runThreads()
+        private void runThreads(int booth)
         {
             var customers = GetCustomers();
             foreach (var customer in customers)
                 new Thread(() =>
                 {
                     var products = new HashSet<IProduct>();
-                    foreach (var item in _booths[0].Stock)
+                    foreach (var item in _booths[booth].Stock)
+                    {
                         products.Add(item.Value);
-                    Buy(customer, products);
+                    }
+                    Buy(customer, products, booth);
                 }).Start();
         }
 
 
-        private void Buy(Customer customer, HashSet<IProduct> products)
+        private void Buy(Customer customer, HashSet<IProduct> products, int booth)
         {
             foreach (var product in products)
                 lock (product)
                 {
-                    customer.AddToCart(_booths[0], product.Key);
+                    customer.AddToCart(_booths[booth], product.Key);
                 }
         }
-
-        /*
-        private void Customer1PurchaseThread()
-        {
-            var customer = new Customer("Siv Jensen");
-            var products = new HashSet<IProduct>();
-
-            foreach (var item in _booths[0].Stock)
-                products.Add(item.Value);
-
-            var product1 = products.ElementAt(0);
-
-            lock (product1)
-            {
-                customer.AddToCart(_booths[0], product1.Key);
-            }
-
-            var product2 = products.ElementAt(1);
-
-            lock (product2)
-            {
-                customer.AddToCart(_booths[0], product2.Key);
-            }
-        }
-
-        private void Customer2PurchaseThread()
-        {
-            var customer = new Customer("Jens Stoltenberg");
-            var products = new HashSet<IProduct>();
-
-            foreach (var item in _booths[0].Stock)
-                products.Add(item.Value);
-
-            var product1 = products.ElementAt(0);
-
-            lock (product1)
-            {
-                customer.AddToCart(_booths[0], product1.Key);
-            }
-
-            var product2 = products.ElementAt(1);
-
-            lock (product2)
-            {
-                customer.AddToCart(_booths[0], product2.Key);
-            }
-        }
-        */
 
         private void makeBooths()
         {
@@ -119,6 +76,7 @@ namespace BazarBizar
 
         private IProduct[] makeProducts(Booth booth)
         {
+
             var itemKey1 = booth.AddToStock(
                 ProductFactory.GetProduct(
                     booth,
@@ -131,6 +89,8 @@ namespace BazarBizar
             IProduct item1;
             booth.Stock.TryGetValue(itemKey1, out item1);
 
+            View.WriteLine("Booth: " + booth.Name + " added " + item1.Name + " for sale");
+
             var itemKey2 = booth.AddToStock(
                 ProductFactory.GetProduct(
                     booth,
@@ -142,6 +102,8 @@ namespace BazarBizar
 
             IProduct item2;
             booth.Stock.TryGetValue(itemKey2, out item2);
+
+            View.WriteLine("Booth: " + booth.Name + " added " + item2.Name + " for sale");
 
             return new[] {item1, item2};
         }
