@@ -89,7 +89,7 @@ namespace BazarBizar
             IProduct item1;
             booth.Stock.TryGetValue(itemKey1, out item1);
 
-            View.WriteLine("Booth: " + booth.Name + " added " + item1.Name + " for sale");
+            View.WriteLine("Booth: " + booth.Name + " added " + item1.Name + " for sale, Product ID: " + item1.Key);
 
             var itemKey2 = booth.AddToStock(
                 ProductFactory.GetProduct(
@@ -103,7 +103,7 @@ namespace BazarBizar
             IProduct item2;
             booth.Stock.TryGetValue(itemKey2, out item2);
 
-            View.WriteLine("Booth: " + booth.Name + " added " + item2.Name + " for sale");
+            View.WriteLine("Booth: " + booth.Name + " added " + item2.Name + " for sale, Product ID: " + item2.Key);
 
             return new[] {item1, item2};
         }

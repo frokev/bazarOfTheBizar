@@ -8,7 +8,7 @@ namespace BazarBizar
 
         public View()
         {
-            Console.ReadKey(true);
+            
         }
 
         public static void WriteLine(string msg)
